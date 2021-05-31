@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Summer - Wishes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header_items container">
+            <div class="logo">
+                <a href="index.html">Secret Summer</a>
+            </div>
+            <div class="nav">
+                <ul>
+                    <div class="icons">
+                      <li><a href="add.html"><img class="plus" src="images/plus.png"></a></li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="content show-content">
+            <div class="all-boxes">
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCCxjZv7Sc65uVXB4tWIZCZCmATUN46VQA",
+      authDomain: "secret-summer.firebaseapp.com",
+      projectId: "secret-summer",
+      storageBucket: "secret-summer.appspot.com",
+      messagingSenderId: "985989465373",
+      appId: "1:985989465373:web:acac47179fdb65428b8df4"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>
+    var userRef = firebase.database().ref('users')
+    const allBoxes = document.querySelector('.all-boxes')
+
+    const database = firebase.database()
+    var ref = database.ref('users')
+    ref.on('value', gotData)
+
+
+    function gotData(data){
+        var login = data.val()
+        var keys = Object.keys(login)
+        for(let i = 0; i < keys.length; i++){
+            var k = keys[i]
+            var name = login[k].user_name
+            var wish = login[k].user_wish
+            const item = `<div class="box">
+                            <h2>${name}</h2>
+                            <p>${wish}</p>
+                         </div>`
+            console.log(item)
+
+            const position = "beforeend"
+    
+            allBoxes.insertAdjacentHTML(position, item)
+        }
+    }
+
+</script>
