@@ -256,29 +256,29 @@ form span{
     }
 
     .add-content form{
-        width: 300px;
+        width: 370px;
         transform: translate(-0%,-2%);
     }
 
     .add-content h1{
-        font-size: 15px;
+        font-size: 18px;
         z-index: 7;
         position: relative;
         top: 80px;
-        left: 50px;
+        left: 60px;
 
     }
 
     .add-content .wish{
         margin-top: 50px;
-        width: 220px;
-        margin-left: -10px;
-        font-size: 10px;
+        width: 280px;
+        margin-left: -7px;
+        font-size: 13px;
     }
 
     .add-content select{
-        width: 220px;
-        margin-left: -10px;
+        width: 280px;
+        margin-left: -7px;
     }
 
     .all-boxes .box{
