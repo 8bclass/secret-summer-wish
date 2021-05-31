@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Summer - Sign up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form">
+        <form>
+            <h1 class="sign-up">Sign up!</h1>
+            <select class="input" id="name">
+                <option class="first">Select your name</option>
+                <option>Գրիգորյան Էլեն</option>
+                <option>Արսենյան Անուշ</option>
+                <option>Անտոնյան Կարինե</option>
+                <option>Անտոնյան Լաուրա</option>
+                <option>Գասպարյան Նատալի</option>
+                <option>Առաքելյան Արամե</option>
+                <option>Դավթյան Հայկ</option>
+                <option>Եսայան Հայկ</option>
+                <option>Բաբալյան Էդուարդ</option>
+                <option>Զաքարյան Սամվել</option>
+                <option>Թադևոսյան Կարապետ</option>
+                <option>Ոսկանյան Մերի</option>
+                <option>Չոբանյան Սամվել</option>
+                <option>Մեհրաբյան Ալեքս</option>
+                <option>Ղազարյան Միլենա</option>
+                <option>Տեր-Ստեփանյան Մանե</option>
+                <option>Հովսեփյան Սոֆյա</option>
+                <option>Սաֆարյան Լյուսի</option>
+                <option>Վարդանյան Անի</option>
+                <option>Ղազարյան Գեննադի</option>
+                <option>Հովհաննիսյան Մարիա</option>
+            </select>
+    
+            <input type="password" class="password"> 
+            <input type="checkbox" class="checkbox" onclick="myFunction()">
+            <span>Show password</span>
+    
+            <input class="submit" type="submit">
+        </form>
+    </div>
+</body>
+</html>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCCxjZv7Sc65uVXB4tWIZCZCmATUN46VQA",
+    authDomain: "secret-summer.firebaseapp.com",
+    projectId: "secret-summer",
+    storageBucket: "secret-summer.appspot.com",
+    messagingSenderId: "985989465373",
+    appId: "1:985989465373:web:acac47179fdb65428b8df4"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>
+    const show = document.querySelector('form .checkbox')
+    const password = document.querySelector('form .password')
+    const submit = document.querySelector('.submit')
+    const select = document.getElementById('name')
+    const first = document.querySelector('.first')
+
+    const database = firebase.database()
+
+    function myFunction(){
+        if(password.type === 'password'){
+            password.type = 'text'
+        }else{
+            password.type = 'password'
+        }
+    }
+
+    submit.addEventListener('click', (e) => {
+        e.preventDefault()
+        if(select.value == first.value && password.value == ""){
+            alert('Error: Fill the fields to continue')
+        }else if(select.value == first.value){
+            alert('Error: Select your name to continue')
+        }else if(password.value == ""){
+            alert('Error: Fill your password to continue')
+        }else{
+            var ask = confirm("Դու վստահ ես, որ դու " + select.value + " էս")
+            if(ask == true){
+                database.ref('/login/' + select.value).set({
+                    user_name: select.value,
+                    user_password: password.value
+                })
+                alert('Դու հաջողությամբ գրանցվեցիր')
+            }
+        }
+    })
+</script>
