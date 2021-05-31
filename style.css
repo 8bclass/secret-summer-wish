@@ -203,20 +203,20 @@ form span{
         width: 350px;
     }
     header{
-        width: 620px;
+        width: 770px;
     }
 
     .add-content form{
         width: 400px;
-        transform: translate(-20%,-20%);
+        transform: translate(-0%,-20%);
     }
 
     .add-content h1{
         font-size: 20px;
         z-index: 7;
         position: relative;
-        top: 15px;
-        right: 38px;
+        top: 10px;
+        left: 40px;
 
     }
 
