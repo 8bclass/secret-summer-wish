@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Summer - add</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header_items container">
+            <div class="logo">
+                <a href="index.html">Secret Summer</a>
+            </div>
+            <div class="nav">
+                <ul>
+                    <div class="icons">
+                      <li><a href="add.html"><img class="plus" src="images/plus.png"></a></li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="content add-content">
+            <h1>Welcome to "add your wish" page</h1>
+            <form>
+                <textarea class="wish input" placeholder="I want to recieve..."></textarea>
+                <select class="input" id="name">
+                    <option class="first">Select your name</option>
+                    <option>Գրիգորյան Էլեն</option>
+                    <option>Արսենյան Անուշ</option>
+                    <option>Անտոնյան Կարինե</option>
+                    <option>Անտոնյան Լաուրա</option>
+                    <option>Գասպարյան Նատալի</option>
+                    <option>Առաքելյան Արամե</option>
+                    <option>Դավթյան Հայկ</option>
+                    <option>Եսայան Հայկ</option>
+                    <option>Բաբալյան Էդուարդ</option>
+                    <option>Զաքարյան Սամվել</option>
+                    <option>Թադևոսյան Կարապետ</option>
+                    <option>Ոսկանյան Մերի</option>
+                    <option>Չոբանյան Սամվել</option>
+                    <option>Մեհրաբյան Ալեքս</option>
+                    <option>Ղազարյան Միլենա</option>
+                    <option>Տեր-Ստեփանյան Մանե</option>
+                    <option>Հովսեփյան Սոֆյա</option>
+                    <option>Սաֆարյան Լյուսի</option>
+                    <option>Վարդանյան Անի</option>
+                    <option>Ղազարյան Գեննադի</option>
+                    <option>Հովհաննիսյան Մարիա</option>
+                </select>
+
+
+
+            </form>
+        </div>
+        
+    </main>
+</body>
+</html>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCCxjZv7Sc65uVXB4tWIZCZCmATUN46VQA",
+    authDomain: "secret-summer.firebaseapp.com",
+    projectId: "secret-summer",
+    storageBucket: "secret-summer.appspot.com",
+    messagingSenderId: "985989465373",
+    appId: "1:985989465373:web:acac47179fdb65428b8df4"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>
+    const select = document.getElementById('name')
+    const first = document.querySelector('.first')
+    const wish = document.querySelector('.wish')
+    var userRef = firebase.database().ref('login')
+
+    const database = firebase.database()
+    var ref = database.ref('login')
+    ref.on('value', gotData)
+
+
+    function gotData(data){
+        var login = data.val()
+        var keys = Object.keys(login)
+        var check = setInterval(function(){
+            for(let i = 0; i < keys.length; i++){
+                var k = keys[i]
+                var name = login[k].user_name
+                var password = login[k].user_password
+                if(select.value == name && wish.value.length >= 15){
+                    var ask = prompt('Write your password')
+                    if(ask == password){
+                        database.ref('/users/' + select.value).set({
+                            user_name: select.value,
+                            user_wish: wish.value
+                        })
+                        alert('The wish was added successfully')
+                        clearInterval(check)
+                    }else{
+                        var question = confirm('Password is inccorect, try again?')
+
+                        if(question === false){
+                            clearInterval(check)
+                        }
+                        
+                    }
+                }
+            } 
+        }, 1000)
+    }
+
+
+
+</script>
