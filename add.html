@@ -103,7 +103,7 @@
                 var k = keys[i]
                 var name = login[k].user_name
                 var password = login[k].user_password
-                if(select.value == name && wish.value.length >= 15){
+                if(select.value == name && wish.value.length >= 10){
                     var ask = prompt('Write your password')
                     if(ask == password){
                         database.ref('/users/' + select.value).set({
