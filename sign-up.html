@@ -1,106 +1,444 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secret Summer - Sign up</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="form">
-        <form>
-            <h1 class="sign-up">Sign up!</h1>
-            <select class="input" id="name">
-                <option class="first">Select your name</option>
-                <option>Գրիգորյան Էլեն</option>
-                <option>Արսենյան Անուշ</option>
-                <option>Անտոնյան Կարինե</option>
-                <option>Անտոնյան Լաուրա</option>
-                <option>Գասպարյան Նատալի</option>
-                <option>Առաքելյան Արամե</option>
-                <option>Դավթյան Հայկ</option>
-                <option>Եսայան Հայկ</option>
-                <option>Բաբալյան Էդուարդ</option>
-                <option>Զաքարյան Սամվել</option>
-                <option>Թադևոսյան Կարապետ</option>
-                <option>Ոսկանյան Մերի</option>
-                <option>Չոբանյան Սամվել</option>
-                <option>Մեհրաբյան Ալեքս</option>
-                <option>Ղազարյան Միլենա</option>
-                <option>Տեր-Ստեփանյան Մանե</option>
-                <option>Հովսեփյան Սոֆյա</option>
-                <option>Սաֆարյան Լյուսի</option>
-                <option>Վարդանյան Անի</option>
-                <option>Ղազարյան Գեննադի</option>
-                <option>Հովհաննիսյան Մարիա</option>
-            </select>
+
+  <meta charset="UTF-8">
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+  <title>CodePen - Secret Santa Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/css/uikit.min.css'>
+  
+  <style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body{
+        font-family: "SF Pro Text","Myriad Set Pro","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;;
+    }
+
+    h2{
+        font-size: 5rem;
+        font-weight: bold;
+    }
+
+    .coming-soon{
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .countdown{
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+    }
+
+    .day,.hour,.minute,.second{
+        font-size: 3rem;
+    }
+
+    .waiting{
+        height: 50vh;
+    }
     
-            <input type="password" class="password"> 
-            <input type="checkbox" class="checkbox" onclick="myFunction()">
-            <span>Show password</span>
-    
-            <input class="submit" type="submit">
-        </form>
-    </div>
-</body>
-</html>
+    @media screen and (max-width: 1500px){
+        h2{
+            font-size: 2.5rem;
+        }
 
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
+        .day,.hour,.minute,.second{
+            font-size: 2rem;
+        }
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
+        .waiting{
+            height: 47vh;
+        }
 
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyCCxjZv7Sc65uVXB4tWIZCZCmATUN46VQA",
-    authDomain: "secret-summer.firebaseapp.com",
-    projectId: "secret-summer",
-    storageBucket: "secret-summer.appspot.com",
-    messagingSenderId: "985989465373",
-    appId: "1:985989465373:web:acac47179fdb65428b8df4"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-</script>
-
-<script>
-    const show = document.querySelector('form .checkbox')
-    const password = document.querySelector('form .password')
-    const submit = document.querySelector('.submit')
-    const select = document.getElementById('name')
-    const first = document.querySelector('.first')
-
-    const database = firebase.database()
-
-    function myFunction(){
-        if(password.type === 'password'){
-            password.type = 'text'
-        }else{
-            password.type = 'password'
+        .coming-soon p{
+          font-size: 1rem;
         }
     }
 
-    submit.addEventListener('click', (e) => {
-        e.preventDefault()
-        if(select.value == first.value && password.value == ""){
-            alert('Error: Fill the fields to continue')
-        }else if(select.value == first.value){
-            alert('Error: Select your name to continue')
-        }else if(password.value == ""){
-            alert('Error: Fill your password to continue')
-        }else{
-            var ask = confirm("Դու վստահ ես, որ դու " + select.value + " էս")
-            if(ask == true){
-                database.ref('/login/' + select.value).set({
-                    user_name: select.value,
-                    user_password: password.value
-                })
-                alert('Դու հաջողությամբ գրանցվեցիր')
-            }
+    @media screen and (max-width: 1100px){
+        h2{
+            font-size: 2rem;
         }
-    })
-</script>
+
+        .day,.hour,.minute,.second{
+            font-size: 1.8rem;
+        }
+
+        .waiting{
+            height: 45vh;
+        }
+    }
+
+    @media screen and (max-width: 830px){
+        h2{
+            font-size: 2rem;
+        }
+
+        .day,.hour,.minute,.second{
+            font-size: 3rem;
+        }
+
+        .waiting{
+            height: 40vh;
+        }
+
+        .coming-soon p{
+          font-size: 0.8rem;
+        }
+    }
+
+    @media screen and (max-width: 767px){
+        h2{
+            font-size: 1.5rem;
+        }
+
+        .day,.hour,.minute,.second{
+            font-size: 2rem;
+        }
+
+        .waiting{
+            height: 30vh;
+        }
+    }
+
+    .load-wrapp {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .load-wrapp:last-child {
+        margin-right: 0;
+    }
+
+    .line {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        background-color: #4b9cdb;
+    }
+
+    .load-3 .line:nth-last-child(1) {
+        animation: loadingC 0.6s 0.1s linear infinite;
+    }
+
+    .load-3 .line:nth-last-child(2) {
+        animation: loadingC 0.6s 0.2s linear infinite;
+    }
+
+    .load-3 .line:nth-last-child(3) {
+        animation: loadingC 0.6s 0.3s linear infinite;
+    }
+
+    @keyframes loadingC {
+      0% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(0, 15px);
+      }
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+</style>
+  
+  
+  
+  
+
+</head>
+
+<body translate="no" >
+  <div class="uk-section">
+  <div id="app" class="uk-container">
+    <section v-if="view === 'build'">
+      <h1>It's Secret Santa Time!</h1>
+      
+      <div v-if="position === 1">
+        <h3>1. Enter everyone's name below, each on their own line.</h3>
+        <p>
+          If you want to prevent two people from getting each other (eg. if they are a couple), put the same number in front of their name.
+          For example, if you don't want Francis or Amy to get each other, 
+            you could enter "1Francis" and "1Amy".
+          If you have more groups, increase the number eg. "2Paul" and "2Doug".
+          Right now, groups can only be two.
+        </p>
+        <textarea v-model="namesSource"
+                  class="uk-textarea"
+                  :class="{ 'uk-form-danger': error }"
+                  @input="clear"
+                  cols="30" rows="10"></textarea>
+        <p v-if="error" class="uk-text-danger">
+          <span v-if="error === 'duplicates'">There are duplicates.</span>
+          <span v-if="error === 'too-few'">This list of names can't be processed.</span>
+        </p>
+        <p>
+          <button @click="buildResults(1)" class="uk-button uk-button-primary" :disabled="error">
+            Generate Results
+          </button>
+        </p>
+      </div>
+
+      <div v-if="position === 2">
+        <h3>2. Send each person their link.</h3>
+        <table class="uk-table uk-table-striped">
+          <thead>
+            <tr>
+              <th>Santa</th>
+              <th v-if="showMatches">Recipient</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="name in names" style="overflow-x: auto;">
+              <td><small>{{ name.replace(/^\d+/, '') }}</small></td>
+              <td v-if="showMatches"><small>{{ results[name].name }}</small></td>
+              <td>
+                <small>
+                  <a :href="results[name].link" v-if="results[name]" target="_blank">
+                    {{ results[name].link }}
+                  </a>
+                </small>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="uk-text-danger">These links cannot be recreated.</p>
+        <button @click="showMatches = !showMatches" class="uk-button uk-button-secondary">
+          <span v-if="showMatches">Hide Matches</span>
+          <span v-else>See Matches</span>
+        </button>
+        <button @click="navigate(-1)" class="uk-button uk-button-danger" :disabled="error">
+          Regenerate
+        </button>
+      </div>
+    </section>
+
+    <section v-if="view === 'read'">
+      <img width="500" height="300" data-src="https://i.pinimg.com/originals/eb/2a/8f/eb2a8f4ddfb50c23712a3cd0d5cc2a3a.gif" uk-img />
+      <h1>Բարի Գալուստ, {{ person }}!</h1>
+      <div v-if="promise">
+        <p>Դու նվեր ես տալու <strong>{{ recipient }}-ին</strong></p>
+      </div>
+      <div v-else>
+        <p>Սեղմիր ներքևի կոճակին, որպեսզի իմանաս, թե այս ամռանը ում ես նվեր տալու։</p>
+        <button @click="promise = true" v-if="!promise" class="uk-button uk-button-primary">
+          <strong>Շարունակել</strong>
+        </button>
+    </section>
+  </div>
+</div>
+
+<div class="load-wrapp">
+  <div class="load-3">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+</div>
+
+  
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/js/uikit.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/js/uikit-icons.min.js'></script>
+      <script id="rendered-js" >
+        const loadWrapp = document.querySelector(".load-wrapp")
+        const audio = document.querySelector(".audio")
+
+       window.addEventListener("load", function(){
+        loadWrapp.parentElement.removeChild(loadWrapp)
+        audio.play()
+       })
+    
+    console.clear();
+    let params = {};
+    const args = window.location.search.replace(/^\?/, '').split('&');
+    const PASSPHRASE = 'SECRET SANTA';
+
+    const position = read('position');
+    const namesSource = read('namesSource');
+    const results = read('results');
+
+    args.forEach(arg => {
+      let [key, val] = arg.split('=');
+      if (key === 'd') {
+        try {
+          let [person, recipient] = decrypt(val).split(',');
+          params.person = person;
+          params.recipient = recipient;
+        } catch (e) {
+          alert('Something went wrong');
+        }
+      }
+    });
+    
+  new Vue({
+    el: '#app',
+    computed: {
+      names() {
+        return this.namesSource.
+        replace(/  +/, ' ').
+        replace(/\n\n+/, '\n').
+        replace(/\n$/, '').
+        split('\n').
+        map(this.cleanName);
+      },
+      error() {
+        let error = null;
+        if (this.hasTooFew()) error = 'too-few';else
+        if (this.hasDuplicates()) error = 'duplicates';
+        return error;
+      } },
+
+  data() {
+    return {
+      view: params.person && params.recipient ? 'read' : 'build',
+      namesSource: namesSource || '',
+      showMatches: false,
+      results: results || {},
+      position: position || 1,
+      person: params.person,
+      recipient: params.recipient,
+      promise: false };
+
+  },
+  methods: {
+    clear() {
+      this.results = {};
+    },
+    cleanName(name) {
+      return name.replace(/^ +/, '').
+      replace(/ +$/, '').
+      replace(/[^\da-zA-Z ]/g, '');
+    },
+    navigate(direction) {
+      this.position += direction;
+      save('position', this.position);
+      save('namesSource', this.namesSource);
+      save('results', this.results);
+    },
+    getGroups() {
+      let obj = {};
+      let arrs = [];
+      this.names.forEach(name => {
+        let group = name.match(/^\d+/);
+        if (group) name = name.replace(group, '');else
+        group = '_';
+        obj[group] = obj[group] || [];
+        obj[group].push(name);
+        this.shuffle(obj[group]);
+      });
+      for (let group in obj) {
+        let g = obj[group];
+        for (let i = 0; i < g.length; i++) {
+          let idx = i % 2;
+          arrs[idx] = arrs[idx] || [];
+          arrs[idx].push(g[i]);
+        }
+      }
+      let count = arrs[0].length;
+      let ints = [];
+      for (let i = 0; i < count; i++) ints.push(i);
+      this.shuffle(ints);
+      let res = [];
+      arrs.forEach(arr => {
+        let tmp = [];
+        ints.forEach((int, i) => {
+          if (arr[int]) tmp[i] = arr[int];
+        });
+        res.push(tmp.filter(el => !!el));
+      });
+      return res[0].concat(res[1]);
+    },
+    buildResults() {
+      this.results = {};
+      const arr = this.getGroups();
+      this.names.forEach(name => {
+        let stripName = name.replace(/^\d+/, '');
+        let idx = (arr.indexOf(stripName) + 1) % arr.length;
+        this.results[name] = { name: arr[idx], link: this.buildLink(stripName, arr[idx]) };
+      });
+      this.navigate(1);
+    },
+    buildLink(person, recipient) {
+      const data = encrypt([person, recipient].join(','));
+      const url = 'account.html';
+      return `${url}?d=${data}`;
+    },
+    hasDuplicates() {
+      let arr = this.names.map(n => n.toLowerCase());
+      var counts = [];
+      for (let i = 0; i <= arr.length; i++) {
+        if (counts[arr[i]] === undefined) counts[arr[i]] = 1;else
+        return true;
+      }
+      return false;
+    },
+    hasTooFew() {
+      return this.names.length < 3;
+    },
+    shuffle(a) {
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    } } });
+
+
+
+    function encrypt(string) {
+      return window.encodeURIComponent(CryptoJS.AES.encrypt(string, PASSPHRASE));
+    }
+
+    function decrypt(string) {
+      string = window.decodeURIComponent(string);
+      return CryptoJS.AES.decrypt(string, PASSPHRASE).toString(CryptoJS.enc.Utf8);
+    }
+
+    function save(type, value) {
+      window.localStorage.setItem(type, JSON.stringify(value));
+    }
+
+    function read(type) {
+      let val = window.localStorage.getItem(type);
+      if (!val) return null;
+      return JSON.parse(val);
+    }
+
+    </script>
+
+  
+
+</body>
+
+</html>
