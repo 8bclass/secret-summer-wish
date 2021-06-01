@@ -309,8 +309,7 @@
         replace(/  +/, ' ').
         replace(/\n\n+/, '\n').
         replace(/\n$/, '').
-        split('\n').
-        map(this.cleanName);
+        split('\n')
       },
       error() {
         let error = null;
