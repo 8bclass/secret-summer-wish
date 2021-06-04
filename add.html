@@ -1,34 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secret Summer - add</title>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Secret Summer - Wishes</title>
     <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <div class="header_items container">
-            <div class="logo">
-                <a href="index.html">Secret Summer</a>
-            </div>
-            <div class="nav">
-                <ul>
-                    <div class="icons">
-                      <li><a href="add.html"><img class="plus" src="https://image.flaticon.com/icons/png/512/1828/1828817.png"></a></li>
-                    </div>
-                </ul>
-            </div>
-        </div>
-    </header>
-    <main>
-        <div class="content add-content">
-            <h1>Welcome to "add your wish" page</h1>
-            <form>
-                <textarea class="wish input" placeholder="I want to recieve..."></textarea>
-                <select class="input" id="name">
-                    <option class="first">Select your name</option>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+          <a class="navbar-brand" href="index.html">Secret Summer</a>
+          <a href="add.html"><img src="https://image.flaticon.com/icons/png/512/1828/1828817.png" width="35" height="35" class="d-inline-block align-top"></a>
+      </div>
+    </nav>
+
+    <div class="container">
+        <div class="card-columns add">
+            <div class="card text-center bg-light" style="width: 22rem;">
+                <div class="card-body">
+                  <h5 class="card-title">'Ավելացրու քո ցանկությունը'</h5><br>
+                  <textarea class="form-control wish" placeholder="Գրիր քո ցանկությունը" id="exampleFormControlTextarea1" rows="7"></textarea>
+                  <br>
+                  <select class="form-select" aria-label="Default select example" id="name">
+                    <option class="first">Ընտրիր քո անունը</option>
                     <option>Գրիգորյան Էլեն</option>
                     <option>Արսենյան Անուշ</option>
                     <option>Անտոնյան Կարինե</option>
@@ -51,80 +50,96 @@
                     <option>Ղազարյան Գեննադի</option>
                     <option>Հովհաննիսյան Մարիա</option>
                 </select>
-
-
-
-            </form>
+                <br>
+                <button type="button" class="btn btn-primary">Հաստատել</button>
+              </div>
+            </div>
         </div>
-        
-    </main>
-</body>
+    </div>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+  </body>
 </html>
 
-<!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-
 <script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyCCxjZv7Sc65uVXB4tWIZCZCmATUN46VQA",
-    authDomain: "secret-summer.firebaseapp.com",
-    projectId: "secret-summer",
-    storageBucket: "secret-summer.appspot.com",
-    messagingSenderId: "985989465373",
-    appId: "1:985989465373:web:acac47179fdb65428b8df4"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCCxjZv7Sc65uVXB4tWIZCZCmATUN46VQA",
+      authDomain: "secret-summer.firebaseapp.com",
+      projectId: "secret-summer",
+      storageBucket: "secret-summer.appspot.com",
+      messagingSenderId: "985989465373",
+      appId: "1:985989465373:web:acac47179fdb65428b8df4"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 </script>
 
 <script>
-    const select = document.getElementById('name')
-    const first = document.querySelector('.first')
-    const wish = document.querySelector('.wish')
-    var userRef = firebase.database().ref('login')
+  const select = document.getElementById('name')
+  const first = document.querySelector('.first')
+  const wish = document.querySelector('.wish')
+  const submit = document.querySelector('.btn')
+  var userRef = firebase.database().ref('login')
 
-    const database = firebase.database()
-    var ref = database.ref('login')
-    ref.on('value', gotData)
+  const database = firebase.database()
+  var ref = database.ref('login')
+  ref.on('value', gotData)
 
 
-    function gotData(data){
-        var login = data.val()
-        var keys = Object.keys(login)
-        var check = setInterval(function(){
-            for(let i = 0; i < keys.length; i++){
-                var k = keys[i]
-                var name = login[k].user_name
-                var password = login[k].user_password
-                if(select.value == name && wish.value.length >= 10){
-                    var ask = prompt('Write your password')
-                    if(ask == password){
-                        database.ref('/users/' + select.value).set({
-                            user_name: select.value,
-                            user_wish: wish.value
-                        })
-                        alert('The wish was added successfully')
-                        clearInterval(check)
-                    }else{
-                        var question = confirm('Password is inccorect, try again?')
 
-                        if(question === false){
-                            clearInterval(check)
-                        }
-                        
-                    }
-                }
-            } 
-        }, 1000)
-    }
+  function gotData(data){
+      var login = data.val()
+      var keys = Object.keys(login)
+      submit.onclick = function(){
+        if(select.value == first.value && wish.value == ''){
+          alert('Լրացրու դաշտերը շարունակելու համար')
+        }
+        else if(select.value == first.value){
+          alert('Ընտրիր քո անունը')
+        }
+        else if(wish.value == ''){
+          alert('Գրիր քո ցանկությունը')
+        }else{
+          for(let i = 0; i < keys.length; i++){
+            var k = keys[i]
+            var name = login[k].user_name
+            var password = login[k].user_password
+            if(select.value == name){
+              var ask = prompt('Գրիր գաղտնաբառը')
+              if(ask == password){
+                database.ref('/users/' + select.value).set({
+                  user_name: select.value,
+                  user_wish: wish.value
+                })
+                alert('Ցանկությունը հաջողությամբ ավելացվեց')    
+              }else{
+                alert('Գաղտնաբառը սխալ է')
+                return
+              }         
+            }
+          } 
+        }
+      }
+      
+  }
 
 
 
 </script>
+
